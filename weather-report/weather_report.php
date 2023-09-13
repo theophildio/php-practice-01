@@ -1,3 +1,23 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $value = $_POST["number"];
+    $checkWeather = $_POST["check_weather"];
+
+    if ($checkWeather) {
+        if ($value == "") {
+            $result = "Please enter your value!";
+        } elseif ($value <= 0) {
+            $result = "It's freezing!";
+        } elseif ($value <= 24) {
+            $result = "It's cool";
+        } else {
+            $result = "It's warm";
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +39,7 @@
         </form>
         <div class="result">
             <span>
-
+                <?php echo $result; ?>
             </span>
         </div>
     </div>
