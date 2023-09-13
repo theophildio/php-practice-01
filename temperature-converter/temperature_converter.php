@@ -1,13 +1,19 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $value = $_POST["temp_value"];
-    $celsiusToFahrenheit = isset($_POST["celsius"]);
-    $fahrenheitToCelsius = isset($_POST["fahrenheit"]);
 
-    if ($celsiusToFahrenheit) {
-        $result = $value * 1.8 + 32;
-    } else if ($fahrenheitToCelsius) {
-        $result = number_format(($value - 32) / 1.8, 2);
+global $result;
+global $warning;
+
+$value = isset($_POST["temp_value"]) ? $_POST["temp_value"] : null;
+
+if (isset($_POST["temp_value"])) {
+    if ($value == "") {
+        $warning = "Please enter your value!";
+    } elseif (isset($_POST["celsius"])) {
+        $cal = $value * 1.8 + 32;
+        $result = "Temperature is $cal &degF";
+    } elseif (isset($_POST["fahrenheit"])) {
+        $formate = number_format(($value - 32) / 1.8, 2);
+        $result = "Temperature is $formate &degC";
     }
 }
 ?>
@@ -35,11 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="result">
             <span>
                 <?php
-if ($celsiusToFahrenheit) {
-    echo "Temperature is $result &deg;F";
-} else {
-    echo "Temperature is $result &deg;C";
-}
+echo $result;
+?>
+                <?php
+echo $warning;
 ?>
             </span>
         </div>
