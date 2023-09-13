@@ -1,21 +1,19 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $value = $_POST["number"];
-    $checkWeather = $_POST["check_weather"];
 
-    if ($checkWeather) {
-        if ($value == "") {
-            $result = "Please enter your value!";
-        } elseif ($value <= 0) {
-            $result = "It's freezing!";
-        } elseif ($value <= 24) {
-            $result = "It's cool";
-        } else {
-            $result = "It's warm";
-        }
+global $result;
+$value = isset($_POST["number"]) ? $_POST["number"] : null;
+
+if (isset($_POST["number"])) {
+    if ($value == "") {
+        $result = "Please enter your value!";
+    } elseif ($value <= 0) {
+        $result = "It's freezing!";
+    } elseif ($value <= 24) {
+        $result = "It's cool";
+    } else {
+        $result = "It's warm";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
