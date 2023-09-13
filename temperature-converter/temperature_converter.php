@@ -1,3 +1,16 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $value = $_POST["temp_value"];
+    $celsiusToFahrenheit = isset($_POST["celsius"]);
+    $fahrenheitToCelsius = isset($_POST["fahrenheit"]);
+
+    if ($celsiusToFahrenheit) {
+        $result = $value * 1.8 + 32;
+    } else if ($fahrenheitToCelsius) {
+        $result = number_format(($value - 32) / 1.8, 2);
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +25,7 @@
 <body>
     <div class="contaienr">
         <h2 class="title">Temperature converter</h2>
-        <form class="input-form" action="" method="GET">
+        <form class="input-form" action="" method="POST">
             <input type="number" name="temp_value">
             <div class="buttons">
                 <input type="submit" name="celsius" value="Celsius to Fahrenheit">
@@ -20,7 +33,15 @@
             </div>
         </form>
         <div class="result">
-
+            <span>
+                <?php
+if ($celsiusToFahrenheit) {
+    echo "Temperature is $result &deg;F";
+} else {
+    echo "Temperature is $result &deg;C";
+}
+?>
+            </span>
         </div>
     </div>
 </body>
