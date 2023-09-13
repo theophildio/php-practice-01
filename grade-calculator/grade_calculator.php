@@ -1,6 +1,34 @@
 <?php
-if ($_SERVER["REQUEST_METHOD" == "POST"]) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $number1 = $_POST["number1"];
+    $number2 = $_POST["number2"];
+    $number3 = $_POST["number3"];
+    $calculate = isset($_POST["average"]);
 
+    if ($calculate) {
+        $totalNumber = $number1 + $number2 + $number3;
+        $calculateAverage = $totalNumber / 3;
+        $average = ceil($calculateAverage);
+    }
+    if ($number1 <= 32 || $number2 <= 32 || $number3 <= 32) {
+        $grade = "<span class=\"fail\">One subject fail</span>";
+    } else {
+        if ($average >= 80 && $average <= 100) {
+            $grade = "A+";
+        } elseif ($average >= 70 && $average <= 79) {
+            $grade = "A";
+        } elseif ($average >= 60 && $average <= 69) {
+            $grade = "A-";
+        } elseif ($average >= 50 && $average <= 59) {
+            $grade = "B";
+        } elseif ($average >= 40 && $average <= 99) {
+            $grade = "C";
+        } elseif ($average >= 33 && $average <= 39) {
+            $grade = "D";
+        } else {
+            $grade = "F";
+        }
+    }
 }
 
 ?>
@@ -28,10 +56,10 @@ if ($_SERVER["REQUEST_METHOD" == "POST"]) {
         </form>
         <div class="result">
             <span>
-                Average number:
+                Average number: <?php echo $average; ?>
             </span>
             <span>
-                Grade:
+                Grade: <?php echo $grade; ?>
             </span>
         </div>
     </div>

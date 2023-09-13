@@ -7,7 +7,7 @@
 .contaienr {
   width: 30%;
   min-height: 220px;
-  margin: 200px auto;
+  margin: 150px auto;
   padding: 20px;
   background: #e8e8e8;
   border-radius: 10px;
@@ -63,4 +63,8 @@
     "Lucida Sans", Arial, sans-serif;
   font-size: 18px;
   font-weight: 600;
+}
+
+.fail {
+  color: #ff0000 !important;
 }
