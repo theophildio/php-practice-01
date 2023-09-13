@@ -1,4 +1,6 @@
 <?php
+global $result;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $number = $_POST["number"];
     $checkNumber = isset($_POST["check_number"]);
