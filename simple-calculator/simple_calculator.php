@@ -1,3 +1,27 @@
+<?php
+global $result;
+global $warning;
+
+$number1 = isset($_POST["number1"]) ? $_POST["number1"] : null;
+$number2 = isset($_POST["number2"]) ? $_POST["number2"] : null;
+
+if (isset($_POST["addition"]) || isset($_POST["subtraction"]) || isset($_POST["multiplication"]) || isset($_POST["division"])) {
+    if ($number1 < 0 || $number2 < 0) {
+        $warning = "Please enter valid numbers!";
+    } elseif (isset($_POST["addition"])) {
+        $result = $number1 + $number2;
+    } elseif (isset($_POST["subtraction"])) {
+        $result = $number1 - $number2;
+    } elseif (isset($_POST["multiplication"])) {
+        $result = $number1 * $number2;
+    } elseif (isset($_POST["division"])) {
+        $cal = $number1 / $number2;
+        $result = number_format($cal, 1);
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
