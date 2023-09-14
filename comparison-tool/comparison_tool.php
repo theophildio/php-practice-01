@@ -1,3 +1,16 @@
+<?php
+
+global $result;
+
+$number1 = isset($_POST["number1"]) ? $_POST["number1"] : null;
+$number2 = isset($_POST["number2"]) ? $_POST["number2"] : null;
+
+if (isset($_POST["number1"]) && isset($_POST["number2"])) {
+    $result = (($number1 < 0 || $number2 < 0) || ($number1 == 0 && $number2 == 0)) ? "<span style=\"color: #ff0000\">Please enter valid numbers!</span>" : ($result = $number1 > $number2 ? "$number1 is greater than $number2" : "$number2 is greater than $number1");
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
